@@ -18,8 +18,12 @@ void Engine::Run()
 	//unsigned long previousTime = 0;
 
 	// CPU 시계 사용
+	// 시스템 시계 -> 고해상도 카운터 (10000000)
+	// 메인보드에 시계가 있음
 	LARGE_INTEGER frequency;
 	QueryPerformanceFrequency(&frequency);
+
+	// std::cout << "frequency : " << frequency.QuadPart << "\n";
 
 	// 시작 시간 및 이전 시간을 위한 변수
 	LARGE_INTEGER time;
