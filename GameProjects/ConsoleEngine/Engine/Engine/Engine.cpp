@@ -1,14 +1,27 @@
+#include "PreCompiledHeader.h"
 #include "Engine.h"
 #include <Windows.h>
 #include <iostream>
 
+#include "Level/Level.h"
+
+// 스태틱 변수 초기화
+Engine* Engine::instance = nullptr;
+
 Engine::Engine()
-	: quit(false)
+	: quit(false), mainLevel(nullptr)
 {
+	// 싱글톤 객체 설정
+	instance = this;
 }
 
 Engine::~Engine()
 {
+	// 메인 레벨 메모리 해제
+	if (mainLevel != nullptr)
+	{
+		delete mainLevel;
+	}
 }
 
 void Engine::Run()
@@ -77,6 +90,14 @@ void Engine::Run()
 	}
 }
 
+void Engine::LoadLevel(Level* newLevel)
+{
+	// 기존 레벨이 있다면 삭제 후 교체
+	
+	// 메인 레벨 설정
+	mainLevel = newLevel;
+}
+
 bool Engine::GetKey(int key)
 {
 	return keyState[key].isKeyDown;
@@ -98,6 +119,12 @@ void Engine::QuitGame()
 	quit = true;
 }
 
+Engine& Engine::Get()
+{
+	// 싱글톤 객체 반환
+	return *instance;
+}
+
 void Engine::ProcessInput()
 {
 	for (int ix = 0; ix < 255; ++ix)
@@ -108,17 +135,19 @@ void Engine::ProcessInput()
 
 void Engine::Update(float deltaTime)
 {
-	// ESC키로 게임 종료
-	if (GetKeyDown(VK_ESCAPE))
+	// 레벨 업데이트
+	if (mainLevel != nullptr)
 	{
-		QuitGame();
+		mainLevel->Update(deltaTime);
 	}
-
-	std::cout << "DeltaTime : " << deltaTime << ", FPS : " << (1.0f / deltaTime) << "\n";
 }
 
 void Engine::Draw()
 {
+	if (mainLevel != nullptr)
+	{
+		mainLevel->Draw();
+	}
 }
 
 void Engine::SavePreviouseKeyStates()
