@@ -1,10 +1,14 @@
 #pragma once
 
-#include "PreCompiledHeader.h"
+#include "Core.h"
+#include "RTTI.h"
 
 // 레벨의 기본 물체
-class ENGINE_API Actor
+class ENGINE_API Actor : public RTTI
 {
+	// RTTI 선언
+	RTTI_DECLARATIONS(Actor, RTTI)
+
 public:
 	Actor();
 	virtual ~Actor();

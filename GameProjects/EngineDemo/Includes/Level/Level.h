@@ -1,6 +1,6 @@
 #pragma once
 
-#include "PreCompiledHeader.h"
+#include "Core.h"
 
 // 전방 선언(Forward Declaration)
 class Actor;
