@@ -2,6 +2,7 @@
 
 #include "Core.h"
 #include "RTTI.h"
+#include "Math/Vector2.h"
 
 // 레벨의 기본 물체
 class ENGINE_API Actor : public RTTI
@@ -19,9 +20,15 @@ public:
 	virtual void Update(float deltaTime);
 	virtual void Draw();
 
-protected:
-	// 보통 ID(해시)/이름 값을 많이 씀
+	// Getter/Setter
+	virtual void SetPosition(const Vector2& newPosition);
+	inline Vector2 Position() const;
 
+protected:
+	// 액터의 위치
+	Vector2 position;
+
+	// 보통 ID(해시)/이름 값을 많이 씀
 	// 활성화 상태인지를 나타내는 변수
 	bool isActive;
 	

@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Core.h"
+#include "Math/Vector2.h"
 
 // 입력 처리를 위한 구조체
 struct KeyState
@@ -27,6 +28,13 @@ public:
 	// 레벨 추가 함수
 	void LoadLevel(Level* newLevel);
 
+	// 화면 좌표 관련 함수
+	void SetCursorPosition(const Vector2& position);
+	void SetCursorPosition(int x, int y);
+
+	// 타겟 프레임 속도 설정 함수
+	void SetTargetFrameRate(float targetFrameRate);
+
 	// 입력 관련 함수
 	bool GetKey(int key);
 	bool GetKeyDown(int key);
@@ -46,7 +54,13 @@ protected:
 	// 키 상태 저장
 	void SavePreviouseKeyStates();
 
-private:
+protected:
+
+	// 타겟 프레임 변수 (초당 프레임)
+	float targetFrameRate = 60.0f;
+
+	// 한 프레임 시간 값 (단위 : 초)
+	float targetOneFrameTime = 0.0f;
 
 	// 종료할 때 설정할 변수
 	bool quit;

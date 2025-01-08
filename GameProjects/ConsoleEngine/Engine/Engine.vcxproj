@@ -196,8 +196,10 @@ xcopy $(OutDir)\*.lib $(SolutionDir)\Lib\ /e /y</Command>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Actor\Actor.cpp" />
+    <ClCompile Include="Actor\DrawableActor.cpp" />
     <ClCompile Include="Engine\Engine.cpp" />
     <ClCompile Include="Level\Level.cpp" />
+    <ClCompile Include="Math\Vector2.cpp" />
     <ClCompile Include="PreCompiledHeader\PreCompiledHeader.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
@@ -208,9 +210,12 @@ xcopy $(OutDir)\*.lib $(SolutionDir)\Lib\ /e /y</Command>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Actor\Actor.h" />
+    <ClInclude Include="Actor\DrawableActor.h" />
+    <ClInclude Include="Container\List.h" />
     <ClInclude Include="Core.h" />
     <ClInclude Include="Engine\Engine.h" />
     <ClInclude Include="Level\Level.h" />
+    <ClInclude Include="Math\Vector2.h" />
     <ClInclude Include="PreCompiledHeader\PreCompiledHeader.h" />
     <ClInclude Include="RTTI.h" />
   </ItemGroup>
