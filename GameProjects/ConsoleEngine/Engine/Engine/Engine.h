@@ -52,7 +52,7 @@ public:
 	// 입력 관련 함수
 	bool GetKey(int key);
 	bool GetKeyDown(int key);
-	bool GetGeyUp(int key);
+	bool GetKeyUp(int key);
 
 	// 엔진 종료 함수
 	void QuitGame();
