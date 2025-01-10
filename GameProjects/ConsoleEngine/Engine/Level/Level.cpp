@@ -24,11 +24,17 @@ void Level::AddActor(Actor* newActor)
 void Level::DestroyActor()
 {
 	// 액터 순회 후 삭제 요청된 액터를 처리
-	for (int ix = 0; ix < actors.Size(); ++ix)
+	for (int ix = 0; ix < actors.Size();)
 	{
-		delete actors[ix];
-		actors[ix] = nullptr;
-		actors.Erase(ix);
+		if (actors[ix]->isExpired)
+		{
+			delete actors[ix];
+			actors[ix] = nullptr;
+			actors.Erase(ix);
+			continue;
+		}
+
+		++ix;
 	}
 }
 
