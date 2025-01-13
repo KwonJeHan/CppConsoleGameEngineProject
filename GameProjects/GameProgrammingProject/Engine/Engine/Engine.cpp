@@ -114,7 +114,7 @@ void Engine::Run()
 void Engine::LoadLevel(Level* newLevel)
 {
 	// 기존 레벨이 있다면 삭제 후 교체
-	
+
 	// 메인 레벨 설정
 	mainLevel = newLevel;
 }
@@ -157,12 +157,12 @@ void Engine::SetCursorType(CursorType cursorType)
 		info.dwSize = 1;
 		info.bVisible = FALSE;
 		break;
-	
+
 	case CursorType::SolidCursor:
 		info.dwSize = 100;
 		info.bVisible = TRUE;
 		break;
-	
+
 	case CursorType::NormalCursor:
 		info.dwSize = 20;
 		info.bVisible = TRUE;
@@ -239,7 +239,7 @@ void Engine::Clear()
 {
 	// 화면의 (0,0)으로 이동
 	SetCursorPosition(0, 0);
-	
+
 	// 화면 지우기
 	int height = 25;
 	for (int ix = 0; ix < height; ++ix)
