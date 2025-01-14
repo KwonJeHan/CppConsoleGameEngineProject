@@ -7,17 +7,51 @@
 #include "Level/Level.h"
 #include"Actor/Actor.h"
 
+#include <time.h>
+
 // 스태틱 변수 초기화
 Engine* Engine::instance = nullptr;
 
 Engine::Engine()
-	: quit(false), mainLevel(nullptr)
+	: quit(false), mainLevel(nullptr), screenSize(40, 25)
 {
+	// 랜덤 시드 설정
+	srand((unsigned int)time(nullptr));
+
 	// 싱글톤 객체 설정
 	instance = this;
 
 	// 기본 타겟 프레임 속도 설정
 	SetTargetFrameRate(60.0f);
+
+	// 화면 지울 때 사용할 버퍼 초기화
+	// 1. 버퍼 크기 할당
+	emptyStringBuffer = new char[(screenSize.x + 1) * screenSize.y + 1];
+	
+	// 버퍼 덮어쓰기
+	memset(emptyStringBuffer, ' ', (screenSize.x + 1) * screenSize.y + 1);
+
+	// 2. 값 할당
+	for (int y = 0; y < screenSize.y; ++y)
+	{
+		//for (int x = 0; x < screenSize.x; ++x)
+		//{
+		//	// 인덱스 계산 잘하기
+		//	emptyStringBuffer[(y * (screenSize.x + 1)) + x] = ' ';
+		//}
+
+		// 각 줄 끝에 개행 문자 추가
+		emptyStringBuffer[(y * (screenSize.x + 1)) + screenSize.x] = '\n';
+	}
+
+	// 마지막에 널 문자 추가
+	emptyStringBuffer[(screenSize.x + 1) * screenSize.y] = '\0';
+
+	// 디버깅
+#if _DEBUG
+	char buffer[2048];
+	strcpy_s(buffer, 2048, emptyStringBuffer);
+#endif
 }
 
 Engine::~Engine()
@@ -27,6 +61,9 @@ Engine::~Engine()
 	{
 		delete mainLevel;
 	}
+
+	// 클리어 버퍼 삭제
+	delete[] emptyStringBuffer;
 }
 
 void Engine::Run()
@@ -49,7 +86,7 @@ void Engine::Run()
 
 
 	int64_t currentTime = time.QuadPart;
-	int64_t previousTime = 0;
+	int64_t previousTime = currentTime;
 
 	// 프레임 제한
 	//float targetFrameRate = 60.0f;
@@ -241,11 +278,13 @@ void Engine::Clear()
 	SetCursorPosition(0, 0);
 	
 	// 화면 지우기
-	int height = 25;
-	for (int ix = 0; ix < height; ++ix)
-	{
-		Log("                              \n");
-	}
+	std::cout << emptyStringBuffer;
+
+	//int height = 25;
+	//for (int ix = 0; ix < height; ++ix)
+	//{
+	//	Log("                              \n");
+	//}
 
 	// 화면의 (0,0)으로 이동
 	SetCursorPosition(0, 0);

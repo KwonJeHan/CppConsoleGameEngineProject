@@ -1,5 +1,6 @@
 #include "TextScrollActor.h"
 #include "Engine/Engine.h"
+#include "Game/Game.h"
 
 TextScrollActor::TextScrollActor(const char* message)
 {
@@ -30,7 +31,8 @@ void TextScrollActor::Update(float deltaTime)
 	// ESC 종료
 	if (Engine::Get().GetKeyDown(VK_ESCAPE))
 	{
-		Engine::Get().QuitGame();
+		//Engine::Get().QuitGame();
+		Game::Get().ToggleMenu();
 	}
 
 	// 좌우 방향키 입력 처리

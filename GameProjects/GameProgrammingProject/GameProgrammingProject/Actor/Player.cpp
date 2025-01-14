@@ -5,7 +5,7 @@
 Player::Player(const char* image)
 	: Super(image)
 {
-	position = Vector2(0, 18);
+	position = Vector2(0, 0);
 }
 
 void Player::Update(float deltaTime)
@@ -14,7 +14,7 @@ void Player::Update(float deltaTime)
 	Super::Update(deltaTime);
 
 	// 키 입력 처리
-	if (Engine::Get().GetKey(VK_LEFT))
+	if (Engine::Get().GetKeyDown(VK_LEFT))
 	{
 		// 새 위치 계산
 		Vector2 newPosition = position;
@@ -28,21 +28,22 @@ void Player::Update(float deltaTime)
 	}
 
 	// 키 입력 처리
-	if (Engine::Get().GetKey(VK_RIGHT))
+	if (Engine::Get().GetKeyDown(VK_RIGHT))
 	{
 		// 새 위치 계산
 		Vector2 newPosition = position;
 		++newPosition.x;
-		if (newPosition.x > 27)
+		//if (newPosition.x > 27)
+		if (newPosition.x > Engine::Get().ScreenSize().x - width)
 		{
-			newPosition.x = 27;
+			newPosition.x = Engine::Get().ScreenSize().x - width;
 		}
 
 		SetPosition(newPosition);
 	}
 
 	// 키 입력 처리
-	if (Engine::Get().GetKey(VK_UP))
+	if (Engine::Get().GetKeyDown(VK_UP))
 	{
 		// 새 위치 계산
 		Vector2 newPosition = position;
@@ -56,14 +57,14 @@ void Player::Update(float deltaTime)
 	}
 
 	// 키 입력 처리
-	if (Engine::Get().GetKey(VK_DOWN))
+	if (Engine::Get().GetKeyDown(VK_DOWN))
 	{
 		// 새 위치 계산
 		Vector2 newPosition = position;
 		++newPosition.y;
-		if (newPosition.y > 24)
+		if (newPosition.y > Engine::Get().ScreenSize().y - height)
 		{
-			newPosition.y = 24;
+			newPosition.y = Engine::Get().ScreenSize().y - height;
 		}
 
 		SetPosition(newPosition);

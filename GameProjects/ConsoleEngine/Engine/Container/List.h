@@ -37,7 +37,7 @@ public:
 
     void PushBack(T&& value)
     {
-        if (size <= capacity)
+        if (size == capacity)
         {
             ReAllocate(capacity * 2);
         }

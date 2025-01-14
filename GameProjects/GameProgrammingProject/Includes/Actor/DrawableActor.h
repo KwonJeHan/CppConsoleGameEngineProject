@@ -14,7 +14,15 @@ public:
 
 	virtual void Draw() override;
 	virtual void SetPosition(const Vector2& newPosition) override;
-private:
+
+protected:
+
 	// 화면에 그릴 문자 값
 	char* image;
+
+	// 너비(문자열 길이)
+	int width = 0;
+	
+	// 높이
+	int height = 1;
 };
