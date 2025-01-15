@@ -25,11 +25,7 @@ void TestLevel::Update(float deltaTime)
 	// ESC 키로 종료
 	if (Engine::Get().GetKeyDown(VK_ESCAPE))
 	{
-		// ESC 종료
-		if (Engine::Get().GetKeyDown(VK_ESCAPE))
-		{
-			//Engine::Get().QuitGame();
-			Game::Get().ToggleMenu();
-		}
+		//Engine::Get().QuitGame();
+		Game::Get().ToggleMenu();
 	}
 }

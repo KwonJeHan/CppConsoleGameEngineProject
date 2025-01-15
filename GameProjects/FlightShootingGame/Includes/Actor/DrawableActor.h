@@ -15,6 +15,12 @@ public:
 	virtual void Draw() override;
 	virtual void SetPosition(const Vector2& newPosition) override;
 
+	// 충돌 확인 함수
+	bool Intersect(const DrawableActor& other);
+
+	// Getter
+	inline int Width() const { return width; }
+
 protected:
 
 	// 화면에 그릴 문자 값

@@ -24,5 +24,5 @@ protected:
 	int width = 0;
 	
 	// ≥Ù¿Ã
-	int height = 1;
+	int height = 3;
 };

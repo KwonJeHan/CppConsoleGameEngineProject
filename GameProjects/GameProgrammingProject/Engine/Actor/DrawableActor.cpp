@@ -31,6 +31,7 @@ void DrawableActor::Draw()
 	Log(image);
 }
 
+// 현재는 필요없음 지워도 됨
 void DrawableActor::SetPosition(const Vector2& newPosition)
 {
 	//// 이전의 위치를 먼저 지우기
