@@ -179,7 +179,8 @@
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Actor\Box.cpp" />
+    <ClCompile Include="Actor\Skeleton.cpp" />
+    <ClCompile Include="Actor\Stone.cpp" />
     <ClCompile Include="Actor\Ground.cpp" />
     <ClCompile Include="Actor\Player.cpp" />
     <ClCompile Include="Actor\Target.cpp" />
@@ -192,9 +193,10 @@
   <ItemGroup>
     <ClInclude Include="Actor\Ground.h" />
     <ClInclude Include="Actor\Player.h" />
+    <ClInclude Include="Actor\Skeleton.h" />
     <ClInclude Include="Actor\Target.h" />
     <ClInclude Include="Actor\Wall.h" />
-    <ClInclude Include="Actor\Box.h" />
+    <ClInclude Include="Actor\Stone.h" />
     <ClInclude Include="Game\Game.h" />
     <ClInclude Include="Level\GameLevel.h" />
     <ClInclude Include="Level\MenuLevel.h" />

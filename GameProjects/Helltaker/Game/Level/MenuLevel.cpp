@@ -42,14 +42,15 @@ void MenuLevel::Draw()
 {
 	Super::Draw();
 
-	Engine::Get().Draw((0, 0), "Sokoban Game\n\n", Color::White);
-	
-	//SetColor(unselectedColor);
-	//Log("Sokoban Game\n\n");
+	//Engine::Get().SetCursorPosition(Engine::Get().ScreenSize().x / 2, Engine::Get().ScreenSize().y / 2);
+	Engine::Get().SetCursorPosition(0, 0);
+
+	SetColor(unselectedColor);
+	Log("Sokoban Game\n\n");
 
 	for (int ix = 0; ix < length; ++ix)
 	{
-		//SetColor(ix == currentIndex ? selectedColor : unselectedColor);
+		SetColor(ix == currentIndex ? selectedColor : unselectedColor);
 		Log("%s\n", menuItems[ix]->menuText);
 	}
 }

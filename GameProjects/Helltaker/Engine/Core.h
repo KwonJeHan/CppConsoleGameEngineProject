@@ -7,8 +7,8 @@
 #include <stdlib.h>
 #include <crtdbg.h>
 
-// 색상 열거형.
-enum class Color : unsigned short
+// 색상 열거형
+enum class Color
 {
 	Red = FOREGROUND_RED,
 	Green = FOREGROUND_GREEN,
@@ -16,24 +16,16 @@ enum class Color : unsigned short
 	White = Red + Green + Blue,
 };
 
-// 커서의 종류를 설정할 때 사용할 열거형.
-enum class CursorType
-{
-	NoCursor,
-	SolidCursor,
-	NormalCursor
-};
-
 // 콘솔 색상 설정 함수.
-//inline void SetColor(Color color)
-//{
-//	SetConsoleTextAttribute(
-//		GetStdHandle(STD_OUTPUT_HANDLE), 
-//		(int)color
-//	);
-//}
+inline void SetColor(Color color)
+{
+	SetConsoleTextAttribute(
+		GetStdHandle(STD_OUTPUT_HANDLE),
+		(int)color
+	);
+}
 
-// 메모리 삭제 함수.
+// 메모리 삭제 함수
 template<typename T>
 void SafeDelete(T* pointer)
 {
@@ -44,7 +36,7 @@ void SafeDelete(T* pointer)
 	}
 }
 
-// 로그 함수.
+// 로그 함수
 template<typename... T>
 void Log(const char* format, T&&... args)
 {
@@ -53,29 +45,29 @@ void Log(const char* format, T&&... args)
 	std::cout << buffer;
 }
 
-// 랜덤 함수.
+// 랜덤 함수
 inline int Random(int min, int max)
 {
-	// 차이 구하기.
+	// 차이 구하기
 	int diff = (max - min) + 1;
-	return ((diff * rand()) / (RAND_MAX + 1)) + min;
+	return((diff * rand()) / (RAND_MAX + 1)) + min;
 }
 
-// min~max 사이의 랜덤 값을 반환해주는 함수.
+// min~max 사이의 랜덤 값을 반환해주는 함수
 inline float RandomPercent(float min, float max)
 {
 	float random = (float)(rand() / (float)RAND_MAX);
 	return random * (max - min) + min;
 }
 
-// 메모리 누수 확인할 때 사용하는 함수.
+// 메모리 누수를 확인할 때 사용하는 함수
 inline void CheckMemoryLeak()
 {
-	// https://learn.microsoft.com/ko-kr/cpp/c-runtime-library/find-memory-leaks-using-the-crt-library?view=msvc-170
 	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
 }
 
-// 디버깅 용도.
+
+// 디버깅 용도
 #ifdef _DEBUG
 #define new new ( _NORMAL_BLOCK , __FILE__ , __LINE__ )
 // Replace _NORMAL_BLOCK with _CLIENT_BLOCK if you want the
@@ -99,6 +91,7 @@ inline void CheckMemoryLeak()
  * 0x07 : reserved
  */
 
+
 #define VK_BACK           0x08
 #define VK_TAB            0x09
 
@@ -109,9 +102,9 @@ inline void CheckMemoryLeak()
 #define VK_CLEAR          0x0C
 #define VK_RETURN         0x0D
 
-/*
-* 0x0E - 0x0F : unassigned
-*/
+  /*
+   * 0x0E - 0x0F : unassigned
+   */
 
 #define VK_SHIFT          0x10
 #define VK_CONTROL        0x11
@@ -153,19 +146,19 @@ inline void CheckMemoryLeak()
 #define VK_DELETE         0x2E
 #define VK_HELP           0x2F
 
-/*
-* VK_0 - VK_9 are the same as ASCII '0' - '9' (0x30 - 0x39)
-* 0x3A - 0x40 : unassigned
-* VK_A - VK_Z are the same as ASCII 'A' - 'Z' (0x41 - 0x5A)
-*/
+   /*
+	* VK_0 - VK_9 are the same as ASCII '0' - '9' (0x30 - 0x39)
+	* 0x3A - 0x40 : unassigned
+	* VK_A - VK_Z are the same as ASCII 'A' - 'Z' (0x41 - 0x5A)
+	*/
 
 #define VK_LWIN           0x5B
 #define VK_RWIN           0x5C
 #define VK_APPS           0x5D
 
-/*
-* 0x5E : reserved
-*/
+	/*
+	 * 0x5E : reserved
+	 */
 
 #define VK_SLEEP          0x5F
 
@@ -197,19 +190,62 @@ inline void CheckMemoryLeak()
 #define VK_F10            0x79
 #define VK_F11            0x7A
 #define VK_F12            0x7B
+#define VK_F13            0x7C
+#define VK_F14            0x7D
+#define VK_F15            0x7E
+#define VK_F16            0x7F
+#define VK_F17            0x80
+#define VK_F18            0x81
+#define VK_F19            0x82
+#define VK_F20            0x83
+#define VK_F21            0x84
+#define VK_F22            0x85
+#define VK_F23            0x86
+#define VK_F24            0x87
+
+#if(_WIN32_WINNT >= 0x0604)
+
+	 /*
+	  * 0x88 - 0x8F : UI navigation
+	  */
+
+#define VK_NAVIGATION_VIEW     0x88 // reserved
+#define VK_NAVIGATION_MENU     0x89 // reserved
+#define VK_NAVIGATION_UP       0x8A // reserved
+#define VK_NAVIGATION_DOWN     0x8B // reserved
+#define VK_NAVIGATION_LEFT     0x8C // reserved
+#define VK_NAVIGATION_RIGHT    0x8D // reserved
+#define VK_NAVIGATION_ACCEPT   0x8E // reserved
+#define VK_NAVIGATION_CANCEL   0x8F // reserved
+
+#endif /* _WIN32_WINNT >= 0x0604 */
 
 #define VK_NUMLOCK        0x90
 #define VK_SCROLL         0x91
 
-/*
-* 0x97 - 0x9F : unassigned
-*/
+	  /*
+	   * NEC PC-9800 kbd definitions
+	   */
+#define VK_OEM_NEC_EQUAL  0x92   // '=' key on numpad
 
-/*
-* VK_L* & VK_R* - left and right Alt, Ctrl and Shift virtual keys.
-* Used only as parameters to GetAsyncKeyState() and GetKeyState().
-* No other API or message will distinguish left and right keys in this way.
-*/
+	   /*
+		* Fujitsu/OASYS kbd definitions
+		*/
+#define VK_OEM_FJ_JISHO   0x92   // 'Dictionary' key
+#define VK_OEM_FJ_MASSHOU 0x93   // 'Unregister word' key
+#define VK_OEM_FJ_TOUROKU 0x94   // 'Register word' key
+#define VK_OEM_FJ_LOYA    0x95   // 'Left OYAYUBI' key
+#define VK_OEM_FJ_ROYA    0x96   // 'Right OYAYUBI' key
+
+		/*
+		 * 0x97 - 0x9F : unassigned
+		 */
+
+		 /*
+		  * VK_L* & VK_R* - left and right Alt, Ctrl and Shift virtual keys.
+		  * Used only as parameters to GetAsyncKeyState() and GetKeyState().
+		  * No other API or message will distinguish left and right keys in this way.
+		  */
 #define VK_LSHIFT         0xA0
 #define VK_RSHIFT         0xA1
 #define VK_LCONTROL       0xA2

@@ -3,7 +3,8 @@
 
 #include "Actor/Wall.h"
 #include "Actor/Ground.h"
-#include "Actor/Box.h"
+#include "Actor/Stone.h"
+#include "Actor/Skeleton.h"
 #include "Actor/Target.h"
 #include "Actor/Player.h"
 
@@ -90,16 +91,28 @@ GameLevel::GameLevel()
 			map.PushBack(ground);
 		}
 
-		// 맵 문자가 b이면 박스 액터 생성
+		// 맵 문자가 b이면 바위 액터 생성
 		else if (mapChar == 'b')
 		{
 			Ground* ground = new Ground(Vector2(xPosition, yPosition));
 			actors.PushBack(ground);
 			map.PushBack(ground);
 
-			Box* box = new Box(Vector2(xPosition, yPosition));
-			actors.PushBack(box);
-			boxes.PushBack(box);
+			Stone* stone = new Stone(Vector2(xPosition, yPosition));
+			actors.PushBack(stone);
+			stones.PushBack(stone);
+		}
+
+		// 맵 문자가 s이면 해골 액터 생성
+		else if (mapChar == 's')
+		{
+			Ground* ground = new Ground(Vector2(xPosition, yPosition));
+			actors.PushBack(ground);
+			map.PushBack(ground);
+
+			Skeleton* skeleton = new Skeleton(Vector2(xPosition, yPosition));
+			actors.PushBack(skeleton);
+			skeletons.PushBack(skeleton);
 		}
 
 		// 맵 문자가 t이면 타겟 액터 생성
@@ -157,10 +170,10 @@ void GameLevel::Update(float deltaTime)
 		}
 
 		// 커서 이동
-		Engine::Get().Draw((0, Engine::Get().ScreenSize().y), "Game Clear!", Color::Red);
+		Engine::Get().SetCursorPosition(0, Engine::Get().ScreenSize().y);
 
 		// 메시지 출력
-		//Log("Game Clear!");
+		Log("Game Clear!");
 
 		// 쓰레드 정지
 		Sleep(2000);
@@ -181,19 +194,29 @@ void GameLevel::Draw()
 			continue;
 		}
 
-		// 박스 위치 확인
-		bool shouldDraw = true;
-		for (auto* box : boxes)
+		// 바위 위치 확인
+		bool shouldDrawB = true;
+		for (auto* stone : stones)
 		{
-			if (actor->Position() == box->Position())
+			if (actor->Position() == stone->Position())
 			{
-				shouldDraw = false;
+				shouldDrawB = false;
 				break;
 			}
 		}
 
-		// 맵 액터 그리기.
-		if (shouldDraw)
+		// 해골 위치 확인
+		bool shouldDrawS = true;
+		for (auto* skeleton : skeletons)
+		{
+			if (actor->Position() == skeleton->Position())
+			{
+				shouldDrawS = false;
+				break;
+			}
+		}
+
+		if (shouldDrawB && shouldDrawS)
 		{
 			actor->Draw();
 		}
@@ -208,28 +231,45 @@ void GameLevel::Draw()
 			continue;
 		}
 
-		// 박스 위치 확인
-		bool shouldDraw = true;
-		for (auto* box : boxes)
+		// 바위 위치 확인
+		bool shouldDrawB = true;
+		for (auto* stone : stones)
 		{
-			if (target->Position() == box->Position())
+			if (target->Position() == stone->Position())
 			{
-				shouldDraw = false;
+				shouldDrawB = false;
+				break;
+			}
+		}
+
+		// 해골 위치 확인
+		bool shouldDrawS = true;
+		for (auto* skeleton : skeletons)
+		{
+			if (target->Position() == skeleton->Position())
+			{
+				shouldDrawS = false;
 				break;
 			}
 		}
 
 		// 맵 액터 그리기.
-		if (shouldDraw)
+		if (shouldDrawB && shouldDrawS)
 		{
 			target->Draw();
 		}
 	}
 
-	// 박스 그리기.
-	for (auto* box : boxes)
+	// 바위 그리기.
+	for (auto* stone : stones)
 	{
-		box->Draw();
+		stone->Draw();
+	}
+
+	// 해골 그리기
+	for (auto* skeleton : skeletons)
+	{
+		skeleton->Draw();
 	}
 
 	// 플레이어 그리기.
@@ -244,38 +284,49 @@ bool GameLevel::CanPlayerMove(const Vector2& position)
 		return false;
 	}
 
-	// 박스 검색
-	Box* searchedBox = nullptr;
-	for (auto* box : boxes)
+	// 바위 검색
+	Stone* searchedStone = nullptr;
+	for (auto* stone : stones)
 	{
-		if (box->Position() == position)
+		if (stone->Position() == position)
 		{
-			searchedBox = box;
+			searchedStone = stone;
 			break;
 		}
 	}
 
-	// 박스가 있을 때 처리
-	if (searchedBox)
+	// 해골 검색
+	Skeleton* searchedSkeleton = nullptr;
+	for (auto* skeleton : skeletons)
+	{
+		if (skeleton->Position() == position)
+		{
+			searchedSkeleton = skeleton;
+			break;
+		}
+	}
+
+	// 바위가 있을 때 처리
+	if (searchedStone)
 	{
 		// 이동 방향
 		int directionX = position.x - player->Position().x;
 		int directionY = position.y - player->Position().y;
 
-		// 박스가 이동할 새 위치
-		Vector2 newPosition = searchedBox->Position() + Vector2(directionX, directionY);
+		// 바위가 이동할 새 위치
+		Vector2 newPosition = searchedStone->Position() + Vector2(directionX, directionY);
 
-		// 추가 검색 (박스)
-		for (auto* box : boxes)
+		// 추가 검색 (바위)
+		for (auto* stone : stones)
 		{
 			// 예외 처리
-			if (box == searchedBox)
+			if (stone == searchedStone)
 			{
 				continue;
 			}
 
-			// 이동할 위치에 다른 박스가 있다면 이동 불가
-			if (box->Position() == newPosition)
+			// 이동할 위치에 다른 바위가 있다면 이동 불가
+			if (stone->Position() == newPosition)
 			{
 				return false;
 			}
@@ -299,7 +350,7 @@ bool GameLevel::CanPlayerMove(const Vector2& position)
 				if (actor->As<Ground>() || actor->As<Target>())
 				{
 					// 박스 이동 처리
-					searchedBox->SetPosition(newPosition);
+					searchedStone->SetPosition(newPosition);
 
 					// 게임 클리어 여부 확인
 					isGameClear = CheckGameClear();
@@ -345,12 +396,12 @@ bool GameLevel::CheckGameClear()
 	int targetScore = targets.Size();
 
 	// 타겟 위치에 배치된 박스 개수 세기
-	for (auto* box : boxes)
+	for (auto* stone : stones)
 	{
 		for (auto* target : targets)
 		{
 			// 점수 확인
-			if (box->Position() == target->Position())
+			if (stone->Position() == target->Position())
 			{
 				++currentScore;
 				continue;

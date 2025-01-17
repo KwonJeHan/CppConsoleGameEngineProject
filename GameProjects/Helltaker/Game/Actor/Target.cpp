@@ -7,5 +7,5 @@ Target::Target(const Vector2& position)
 	this->position = position;
 
 	// 색상 설정
-	color = Color::Blue;
+	color = Color::White;
 }

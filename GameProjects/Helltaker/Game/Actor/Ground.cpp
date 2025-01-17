@@ -7,5 +7,5 @@ Ground::Ground(const Vector2& position)
     this->position = position;
 
     // 색상 지정.
-    color = Color::Red;
+    color = Color::Blue;
 }

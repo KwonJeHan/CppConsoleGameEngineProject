@@ -1,7 +1,7 @@
-#include "Box.h"
+#include "Stone.h"
 
-Box::Box(const Vector2& position)
-	: DrawableActor("b")
+Stone::Stone(const Vector2& position)
+	: DrawableActor("■")
 {
 	// 위치 설정
 	this->position = position;

@@ -27,7 +27,7 @@
     <ClCompile Include="Actor\Ground.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="Actor\Box.cpp">
+    <ClCompile Include="Actor\Stone.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="Actor\Target.cpp">
@@ -42,6 +42,9 @@
     <ClCompile Include="Level\MenuLevel.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="Actor\Skeleton.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Actor\Wall.h">
@@ -53,7 +56,7 @@
     <ClInclude Include="Actor\Ground.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="Actor\Box.h">
+    <ClInclude Include="Actor\Stone.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="Actor\Target.h">
@@ -66,6 +69,9 @@
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="Level\MenuLevel.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Actor\Skeleton.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>
