@@ -180,6 +180,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Actor\Skeleton.cpp" />
+    <ClCompile Include="Actor\Spike.cpp" />
     <ClCompile Include="Actor\Stone.cpp" />
     <ClCompile Include="Actor\Ground.cpp" />
     <ClCompile Include="Actor\Player.cpp" />
@@ -194,6 +195,7 @@
     <ClInclude Include="Actor\Ground.h" />
     <ClInclude Include="Actor\Player.h" />
     <ClInclude Include="Actor\Skeleton.h" />
+    <ClInclude Include="Actor\Spike.h" />
     <ClInclude Include="Actor\Target.h" />
     <ClInclude Include="Actor\Wall.h" />
     <ClInclude Include="Actor\Stone.h" />

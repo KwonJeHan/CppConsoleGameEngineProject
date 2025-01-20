@@ -35,6 +35,8 @@ protected:
 	// 액터의 위치
 	Vector2 position;
 
+
+public:
 	// 보통 ID(해시)/이름 값을 많이 씀
 	// 활성화 상태인지를 나타내는 변수
 	bool isActive;

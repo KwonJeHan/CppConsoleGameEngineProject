@@ -1,7 +1,7 @@
 #include "Target.h"
 
 Target::Target(const Vector2& position)
-	: DrawableActor("T")
+	: DrawableActor(".")
 {
 	// 위치 설정
 	this->position = position;

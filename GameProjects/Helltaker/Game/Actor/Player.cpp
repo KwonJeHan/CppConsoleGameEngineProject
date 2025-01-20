@@ -28,6 +28,7 @@ void Player::Update(float deltaTime)
 	// 상하좌우
 	if (Engine::Get().GetKeyDown(VK_LEFT))
 	{
+		++moveCount;
 		// 이동 가능한지 확인
 		if (refLevel->CanPlayerMove(Vector2(position.x - 1, position.y)))
 		{
@@ -39,6 +40,7 @@ void Player::Update(float deltaTime)
 
 	if (Engine::Get().GetKeyDown(VK_RIGHT))
 	{
+		++moveCount;
 		// 이동 가능한지 확인
 		if (refLevel->CanPlayerMove(Vector2(position.x + 1, position.y)))
 		{
@@ -50,6 +52,7 @@ void Player::Update(float deltaTime)
 
 	if (Engine::Get().GetKeyDown(VK_UP))
 	{
+		++moveCount;
 		// 이동 가능한지 확인
 		if (refLevel->CanPlayerMove(Vector2(position.x, position.y - 1)))
 		{
@@ -61,6 +64,7 @@ void Player::Update(float deltaTime)
 
 	if (Engine::Get().GetKeyDown(VK_DOWN))
 	{
+		++moveCount;
 		// 이동 가능한지 확인
 		if (refLevel->CanPlayerMove(Vector2(position.x, position.y + 1)))
 		{

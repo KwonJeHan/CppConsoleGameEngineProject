@@ -13,6 +13,9 @@ public:
 
 	virtual void Update(float deltaTime) override;
 
+	// 이동 횟수
+	int moveCount = 0;
+
 private:
 	// 게임 레벨을 참조하는 변수
 	GameLevel* refLevel = nullptr;
