@@ -179,6 +179,9 @@
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Actor\Demon.cpp" />
+    <ClCompile Include="Actor\Gate.cpp" />
+    <ClCompile Include="Actor\Key.cpp" />
     <ClCompile Include="Actor\Skeleton.cpp" />
     <ClCompile Include="Actor\Spike.cpp" />
     <ClCompile Include="Actor\Stone.cpp" />
@@ -192,7 +195,10 @@
     <ClCompile Include="Main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Actor\Demon.h" />
+    <ClInclude Include="Actor\Gate.h" />
     <ClInclude Include="Actor\Ground.h" />
+    <ClInclude Include="Actor\Key.h" />
     <ClInclude Include="Actor\Player.h" />
     <ClInclude Include="Actor\Skeleton.h" />
     <ClInclude Include="Actor\Spike.h" />

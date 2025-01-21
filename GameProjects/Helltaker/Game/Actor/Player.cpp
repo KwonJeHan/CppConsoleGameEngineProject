@@ -30,9 +30,9 @@ void Player::Update(float deltaTime)
 	{
 		++moveCount;
 		// 이동 가능한지 확인
-		if (refLevel->CanPlayerMove(Vector2(position.x - 1, position.y)))
+		if (refLevel->CanPlayerMove(Vector2(position.x - 2, position.y)))
 		{
-			position.x -= 1;
+			position.x -= 2;
 		}
 		//position.x -= 1;
 		//position.x = position.x < 0 ? 0 : position.x;
@@ -42,9 +42,9 @@ void Player::Update(float deltaTime)
 	{
 		++moveCount;
 		// 이동 가능한지 확인
-		if (refLevel->CanPlayerMove(Vector2(position.x + 1, position.y)))
+		if (refLevel->CanPlayerMove(Vector2(position.x + 2, position.y)))
 		{
-			position.x += 1;
+			position.x += 2;
 		}
 		//position.x += 1;
 		//position.x = position.x >= Engine::Get().ScreenSize().x ? Engine::Get().ScreenSize().x : position.x;

@@ -10,6 +10,9 @@ class Stone;
 class Skeleton;
 class Target;
 class Spike;
+class Gate;
+class Key;
+class Demon;
 class GameLevel : public Level
 {
     RTTI_DECLARATIONS(GameLevel, Level)
@@ -25,6 +28,14 @@ public:
 
     // 플레이어가 이동이 가능한 지 확인하는 함수
     bool CanPlayerMove(const Vector2& position);
+
+    void SelectStage();
+
+    // 텍스트 파일 읽기
+    void TextFileRead(const char* filename);
+
+    // 파일 인덱스
+    int fileIndex = 0;
 
 private:
     // 박스를 옮긴 뒤 게임을 클리어 했는지 확인하는 함수
@@ -49,6 +60,15 @@ private:
     // 가시 함정 액터
     List<Spike*> spikes;
 
+    // 문 액터
+    List<Gate*> gates;
+
+    // 열쇠 액터
+    List<Key*> keys;
+
+    // 악마 액터
+    Demon* demon = nullptr;
+
     // 플레이어 액터
     Player* player = nullptr;
 
@@ -59,5 +79,5 @@ private:
     bool isGameOver = false;
 
     // 이동 가능 횟수
-    int moveLimit = 20;
+    int moveLimit = 100;
 };

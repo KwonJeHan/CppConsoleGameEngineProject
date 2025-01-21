@@ -10,7 +10,11 @@ public:
 
 	void ToggleMenu();
 
+	void NextLevel();
+
 	static Game& Get() { return *instance; }
+
+	int index = 0;
 
 private:
 	bool showMenu = false;

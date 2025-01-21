@@ -8,6 +8,4 @@ class Spike : public DrawableActor
 
 public:
 	Spike(const Vector2& position);
-
-	bool active;
 };
