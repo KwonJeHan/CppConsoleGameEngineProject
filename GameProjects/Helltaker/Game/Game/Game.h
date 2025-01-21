@@ -1,6 +1,7 @@
 #pragma once
 
 #include <Engine/Engine.h>
+#include "Level/GameLevel.h"
 
 class Game : public Engine
 {
@@ -10,9 +11,9 @@ public:
 
 	void ToggleMenu();
 
-	void NextLevel();
-
 	static Game& Get() { return *instance; }
+
+	void NextLevel();
 
 	int index = 0;
 

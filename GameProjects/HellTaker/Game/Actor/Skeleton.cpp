@@ -1,7 +1,7 @@
 #include "Skeleton.h"
 
 Skeleton::Skeleton(const Vector2& position)
-	: DrawableActor("◆")
+	: DrawableActor("S")//◆
 {
 	// 위치 설정
 	this->position = position;

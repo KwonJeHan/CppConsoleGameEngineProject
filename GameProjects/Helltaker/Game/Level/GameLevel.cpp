@@ -15,8 +15,10 @@
 
 #include "Engine/Timer.h"
 
+
 GameLevel::GameLevel()
 {
+	fileIndex = Game::Get().index;
 	SelectStage();
 }
 
@@ -25,10 +27,40 @@ void GameLevel::Update(float deltaTime)
 	Super::Update(deltaTime);
 
 	// 타겟 지점에 플레이어가 도착했는지 확인
+	isStageClear = CheckStageClear();
+
+	// 모든 스테이지가 클리어 됐는지 확인
 	isGameClear = CheckGameClear();
 
 	// 플레이어가 이동 가능 횟수를 초과했는지 확인
 	isGameOver = CheckGameOver();
+
+
+	// 스테이지 클리어 시 다음 스테이지
+	if (isStageClear)
+	{
+		// 타이머
+		static Timer timer(0.1f);
+		timer.Update(deltaTime);
+		if (!timer.IsTimeOut())
+		{
+			return;
+		}
+		timer.Reset();
+
+		// 커서 이동
+		Engine::Get().SetCursorPosition(Engine::Get().ScreenSize().x / 2, Engine::Get().ScreenSize().y);
+
+		// 메시지 출력
+		Log("Stage Clear!");
+
+		// 쓰레드 정지
+		Sleep(2000);
+
+		system("cls");
+
+		Game::Get().NextLevel();
+	}
 
 	// 게임이 클리어 됐으면 게임 종료 처리
 	if (isGameClear)
@@ -58,12 +90,8 @@ void GameLevel::Update(float deltaTime)
 		// 쓰레드 정지
 		Sleep(2000);
 
-		//// 게임 종료 처리
-		//Engine::Get().QuitGame();
-
-		++fileIndex;
-		SelectStage();
-		//Game::Get().NextLevel();
+		// 게임 종료 처리
+		Engine::Get().QuitGame();
 	}
 
 	// 게임 오버 됐으면 게임 종료 처리
@@ -286,7 +314,10 @@ void GameLevel::Draw()
 	// 바위 그리기.
 	for (auto* stone : stones)
 	{
-		stone->Draw();
+		if (!stone->isExpired)
+		{
+			stone->Draw();
+		}
 	}
 
 	// 해골 그리기
@@ -474,7 +505,7 @@ bool GameLevel::CanPlayerMove(const Vector2& position)
 		int directionX = position.x - player->Position().x;
 		int directionY = position.y - player->Position().y;
 
-		// 바위가 이동할 새 위치
+		// 해골이 이동할 새 위치
 		Vector2 newPosition = searchedSkeleton->Position() + Vector2(directionX, directionY);
 
 		// 추가 검색 (해골)
@@ -664,11 +695,12 @@ void GameLevel::SelectStage()
 		break;
 	case 2:
 		TextFileRead("../Assets/Maps/stage3.txt");
-		moveLimit = 30;
+		moveLimit = 40;
 		break;
 	case 3:
 		TextFileRead("../Assets/Maps/stage4.txt");
-		moveLimit = 35;
+		moveLimit = 15;
+		lastStage = true;
 		break;
 	}
 }
@@ -882,18 +914,33 @@ void GameLevel::TextFileRead(const char* filename)
 //	return currentScore == targetScore;
 //}
 
-bool GameLevel::CheckGameClear()
+
+bool GameLevel::CheckStageClear()
 {
-	bool gameclear = 0;
+	bool stageClear = 0;
 	for (auto* target : targets)
 	{
-		if (player->Position() == target->Position())
+		if ((player->Position() == target->Position()) && !lastStage)
 		{
-			++gameclear;
+			++stageClear;
 			continue;
 		}
 	}
-	return gameclear;
+	return stageClear;
+}
+
+bool GameLevel::CheckGameClear()
+{
+	bool gameClear = 0;
+	for (auto* target : targets)
+	{
+		if ((player->Position() == target->Position()) && lastStage)
+		{
+			++gameClear;
+			continue;
+		}
+	}
+	return gameClear;
 }
 
 bool GameLevel::CheckGameOver()

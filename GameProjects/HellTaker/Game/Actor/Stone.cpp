@@ -1,7 +1,7 @@
 #include "Stone.h"
 
 Stone::Stone(const Vector2& position)
-	: DrawableActor("■")
+	: DrawableActor("B")//■
 {
 	// 위치 설정
 	this->position = position;

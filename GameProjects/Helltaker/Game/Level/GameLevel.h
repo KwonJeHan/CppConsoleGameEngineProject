@@ -29,6 +29,7 @@ public:
     // 플레이어가 이동이 가능한 지 확인하는 함수
     bool CanPlayerMove(const Vector2& position);
 
+    // 스테이지 선택
     void SelectStage();
 
     // 텍스트 파일 읽기
@@ -38,7 +39,10 @@ public:
     int fileIndex = 0;
 
 private:
-    // 박스를 옮긴 뒤 게임을 클리어 했는지 확인하는 함수
+    // 현재 스테이지를 클리어 했는지 확인하는 함수
+    bool CheckStageClear();
+
+    // 모든 스테이지를 클리어 했는지 확인하는 함수
     bool CheckGameClear();
 
     // 이동 횟수가 이동 가능 횟수를 넘어가서 게임 오버 됐는지 확인하는 함수
@@ -72,12 +76,17 @@ private:
     // 플레이어 액터
     Player* player = nullptr;
 
+    // 스테이지 클리어 변수
+    bool isStageClear = false;
+
     // 게임 클리어 변수
     bool isGameClear = false;
+    bool lastStage = false;
 
     // 게임 오버 변수
     bool isGameOver = false;
 
     // 이동 가능 횟수
-    int moveLimit = 100;
+    int moveLimit;
+
 };
