@@ -8,7 +8,7 @@
 
 ### 1-1. 구현 게임
 
-<img src= "https://github.com/KwonJeHan/CppConsoleGameEngineProject/blob/main/GameProjects/images/Present/HelltakerMain.jpg">
+<img src= "https://github.com/KwonJeHan/CppConsoleGameEngineProject/blob/main/GameProjects/images/Present/HelltakerPlay.png">
 
 ​								Steam 무료 인디 게임 **HELLTAKER**
 
