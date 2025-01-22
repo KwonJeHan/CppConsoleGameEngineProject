@@ -8,7 +8,7 @@
 
 ### 1-1. 구현 게임
 
-![HelltakerMain](../images/Readme/HelltakerMain.jpg)
+<img src= "https://github.com/KwonJeHan/CppConsoleGameEngineProject/blob/main/GameProjects/images/Present/HelltakerMain.jpg">
 
 ​								Steam 무료 인디 게임 **HELLTAKER**
 
@@ -82,13 +82,13 @@
 
 #### **이동 횟수 추가 및 게임 오버 추가**
 
-![1.movecount](../images/Readme/1.movecount.PNG) 
+<img src= "https://github.com/KwonJeHan/CppConsoleGameEngineProject/blob/main/GameProjects/images/Present/1.movecount.PNG">
 
 moveCount 변수 선언 및 키보드 입력을 받으면 값을 1 씩 증가
 
 
 
-![2.Gameover](../images/Readme/2.Gameover.PNG) 
+<img src= "https://github.com/KwonJeHan/CppConsoleGameEngineProject/blob/main/GameProjects/images/Present/2.Gameover.PNG">
 
 moveLimit 값보다 moveCount 값이 더 커지면 true 반환
 
@@ -96,7 +96,7 @@ moveLimit 값보다 moveCount 값이 더 커지면 true 반환
 
 #### **구현되어 있는 액터 로직 변경**
 
- ![3-1.stone](../images/Readme/3-1.stone.PNG) 
+ <img src= "https://github.com/KwonJeHan/CppConsoleGameEngineProject/blob/main/GameProjects/images/Present/3-1.stone.PNG">
 
 바위, 스켈레톤을 밀 때 바위나 해골은 이동하지만 캐릭터는 이동하면 안된다.
 
@@ -104,43 +104,43 @@ moveLimit 값보다 moveCount 값이 더 커지면 true 반환
 
 #### **신규 액터 추가 (스켈레톤, 가시 함정, 열쇠, 문, 악마)**
 
-![4-1.skeleton](../images/Readme/4-1.skeleton.PNG) 
+<img src= "https://github.com/KwonJeHan/CppConsoleGameEngineProject/blob/main/GameProjects/images/Present/4-1.skeleton.PNG">
 
 기존 액터들과 같은 형식으로 추가
 
 
 
-![4-6.list](../images/Readme/4-6.list.PNG) 
+<img src= "https://github.com/KwonJeHan/CppConsoleGameEngineProject/blob/main/GameProjects/images/Present/4-6.list.PNG">
 
 악마는 스테이지 당 1명
 
 
 
-![4-8.sDraw](../images/Readme/4-8.sDraw.PNG) 
+<img src= "https://github.com/KwonJeHan/CppConsoleGameEngineProject/blob/main/GameProjects/images/Present/4-8.sDraw.PNG">
 
 스켈레톤, 열쇠, 문은 바위와 같이 땅 위에 덮어쓰는 형태로 생성
 
 
 
-![4-9.sDestroy](../images/Readme/4-9.sDestroy.PNG) 
+<img src= "https://github.com/KwonJeHan/CppConsoleGameEngineProject/blob/main/GameProjects/images/Present/4-9.sDestroy.PNG">
 
 스켈레톤은 바위와 다르게 밀리는 방향에 이동 불가 장애물이 있을 시 파괴
 
 
 
-![4-10.gDestroy](../images/Readme/4-10.gDestroy.PNG) 
+<img src= "https://github.com/KwonJeHan/CppConsoleGameEngineProject/blob/main/GameProjects/images/Present/4-10.gDestroy.PNG">
 
 문은 열쇠가 있으면 열쇠 개수를 하나 줄이고 사라짐, 없으면 이동 불가
 
 
 
-![4-11.kDestroy](../images/Readme/4-11.kDestroy.PNG) 
+<img src= "https://github.com/KwonJeHan/CppConsoleGameEngineProject/blob/main/GameProjects/images/Present/4-11.kDestroy.PNG">
 
 열쇠는 충돌 시 사라지며 열쇠 개수 하나 증가
 
 
 
-![4-12.spikePosition](../images/Readme/4-12.spikePosition.PNG) 
+<img src= "https://github.com/KwonJeHan/CppConsoleGameEngineProject/blob/main/GameProjects/images/Present/4-12.spikePosition.PNG">
 
 가시 함정은 충돌 시 moveCount 값 1 더 증가
 
@@ -148,7 +148,7 @@ moveLimit 값보다 moveCount 값이 더 커지면 true 반환
 
 #### **스테이지 구상 및 txt파일 추가**
 
-![5-1.map1](../images/Readme/5-1.map1.PNG)           ![5-2.map2](../images/Readme/5-2.map2.PNG)  
+<img src= "https://github.com/KwonJeHan/CppConsoleGameEngineProject/blob/main/GameProjects/images/Present/5-1.map1.PNG">           <img src= "https://github.com/KwonJeHan/CppConsoleGameEngineProject/blob/main/GameProjects/images/Present/5-2.map2.PNG">
 
 텍스트 파일에 위와 같이 텍스트 작성
 
@@ -156,31 +156,31 @@ moveLimit 값보다 moveCount 값이 더 커지면 true 반환
 
 #### **스테이지 클리어 및 전환 추가**
 
-![6-1.stageClear](../images/Readme/6-1.stageClear.PNG) 
+<img src= "https://github.com/KwonJeHan/CppConsoleGameEngineProject/blob/main/GameProjects/images/Present/6-1.stageClear.PNG">
 
 마지막 스테이지 (현 프로젝트에선 4번째 스테이지)를 클리어 시 lastStage 값이 True로 변경되므로 조건문을 위와 같이 작성
 
 
 
-![6-2.selectStage](../images/Readme/6-2.selectStage.PNG) 
+<img src= "https://github.com/KwonJeHan/CppConsoleGameEngineProject/blob/main/GameProjects/images/Present/6-2.selectStage.PNG">
 
 기존에 있던 파일 입출력을 const char* 타입의 인수를 받는 함수로 만들어 switch 문으로 스테이지 전환
 
 
 
-![6-4.gameStage](../images/Readme/6-4.gameStage.PNG) 
+<img src= "https://github.com/KwonJeHan/CppConsoleGameEngineProject/blob/main/GameProjects/images/Present/6-4.gameStage.PNG">
 
 GameLevel을 만들 때 SelectStage 함수를 호출
 
 
 
-![6-3.nextStage](../images/Readme/6-3.nextStage.PNG) 
+<img src= "https://github.com/KwonJeHan/CppConsoleGameEngineProject/blob/main/GameProjects/images/Present/6-3.nextStage.PNG">
 
 Game 클래스의 NextLevel 함수를 만들고 새로운 레벨 만들기 및 삭제 기능 구현
 
  
 
-![6-5.stageClear](../images/Readme/6-5.stageClear.PNG) 
+<img src= "https://github.com/KwonJeHan/CppConsoleGameEngineProject/blob/main/GameProjects/images/Present/6-5.stageClear.PNG">
 
 스테이지 클리어 시 NextLevel 함수 호출
 
@@ -188,7 +188,7 @@ Game 클래스의 NextLevel 함수를 만들고 새로운 레벨 만들기 및 �
 
 #### **게임 클리어 로직 변경**
 
-![7.gameClear](../images/Readme/7.gameClear.PNG) 
+<img src= "https://github.com/KwonJeHan/CppConsoleGameEngineProject/blob/main/GameProjects/images/Present/7.gameClear.PNG">
 
 마지막 스테이지 클리어 시 lastStage가 True로 할당되고 게임 클리어
 
@@ -196,13 +196,13 @@ Game 클래스의 NextLevel 함수를 만들고 새로운 레벨 만들기 및 �
 
 #### **메인 메뉴 추가**
 
-![8.mainMenu](../images/Readme/8.mainMenu.PNG) 
+<img src= "https://github.com/KwonJeHan/CppConsoleGameEngineProject/blob/main/GameProjects/images/Present/8.mainMenu.PNG">
 
 Mainmenu 클래스 및 함수 추가
 
 
 
-![9.maincpp](../images/Readme/9.maincpp.PNG) 
+<img src= "https://github.com/KwonJeHan/CppConsoleGameEngineProject/blob/main/GameProjects/images/Present/9.maincpp.PNG">
 
 Main.cpp 실행 시 new MainLevel을 만들어서 LoadLevel로 호출
 
@@ -210,43 +210,43 @@ Main.cpp 실행 시 new MainLevel을 만들어서 LoadLevel로 호출
 
 ## 4. 시연
 
-![메인 메뉴](../images/Readme/메인 메뉴.gif) 
+<img src= "https://github.com/KwonJeHan/CppConsoleGameEngineProject/blob/main/GameProjects/images/Present/Mainmenu.gif">
 
 **메인 메뉴**
 
 
 
-![바위 충돌](../images/Readme/바위 충돌.gif) 
+<img src= "https://github.com/KwonJeHan/CppConsoleGameEngineProject/blob/main/GameProjects/images/Present/Stone.gif">
 
 **바위 충돌**
 
 
 
-![문 충돌](../images/Readme/문 충돌.gif) 
+<img src= "https://github.com/KwonJeHan/CppConsoleGameEngineProject/blob/main/GameProjects/images/Present/Gate.gif">
 
 **문 충돌**
 
 
 
-![가시 함정, 열쇠 2개](../images/Readme/가시 함정, 열쇠 2개.gif)  
+<img src= "https://github.com/KwonJeHan/CppConsoleGameEngineProject/blob/main/GameProjects/images/Present/SpikeKey.gif">
 
 **가시 함정, 열쇠 2개 획득**
 
 
 
-![스테이지 전환](../images/Readme/스테이지 전환.gif) 
+<img src= "https://github.com/KwonJeHan/CppConsoleGameEngineProject/blob/main/GameProjects/images/Present/1stageClear.gif">
 
 **스테이지 전환**
 
  
 
-![1stage 클리어](../images/Readme/1stage 클리어.gif)  
+<img src= "https://github.com/KwonJeHan/CppConsoleGameEngineProject/blob/main/GameProjects/images/Present/Mainmenu.gif">
 
 **1스테이지 클리어**
 
 
 
-![게임 클리어](../images/Readme/게임 클리어.gif) 
+<img src= "https://github.com/KwonJeHan/CppConsoleGameEngineProject/blob/main/GameProjects/images/Present/GameClear.gif">
 
 **게임 클리어**
 
