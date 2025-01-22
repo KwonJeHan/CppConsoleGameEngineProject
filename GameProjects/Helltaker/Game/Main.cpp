@@ -1,6 +1,7 @@
 #include <iostream>
 #include "Game/Game.h"
 #include "Level/GameLevel.h"
+#include "Level/MainLevel.h"
 
 int main()
 {
@@ -8,6 +9,6 @@ int main()
 	CheckMemoryLeak();
 
 	Game game;
-	game.LoadLevel(new GameLevel());
+	game.LoadLevel(new MainLevel());
 	game.Run();
 }

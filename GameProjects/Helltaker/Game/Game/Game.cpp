@@ -49,11 +49,12 @@ void Game::ToggleMenu()
 
 void Game::NextLevel()
 {
-	++index;
+	
 	if (mainLevel)
 	{
 		delete mainLevel;
 		mainLevel = nullptr;
 	}
 	mainLevel = new GameLevel;
+	++index;
 }

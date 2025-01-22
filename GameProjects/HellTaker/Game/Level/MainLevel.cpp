@@ -1,28 +1,23 @@
-#include "MenuLevel.h"
+#include "MainLevel.h"
 #include "Game/Game.h"
 
-MenuLevel::MenuLevel()
+MainLevel::MainLevel()
 {
-	menuItems.PushBack(new MenuItem("Resume Game", []() { Game::Get().ToggleMenu(); }));
-	menuItems.PushBack(new MenuItem("Quit Game", []() { Game::Get().QuitGame(); }));
-	length = menuItems.Size();
+	mainItems.PushBack(new MainItem("Start  Game", []() { system("cls"); Game::Get().NextLevel(); }));
+	mainItems.PushBack(new MainItem("Quit Game", []() { Game::Get().QuitGame(); }));
+	length = mainItems.Size();
 }
 
-MenuLevel::~MenuLevel()
+MainLevel::~MainLevel()
 {
-	for (auto* item : menuItems)
+	for (auto* item : mainItems)
 	{
 		delete item;
 	}
 }
 
-void MenuLevel::Update(float deltaTime)
+void MainLevel::Update(float deltaTime)
 {
-	if (Game::Get().GetKeyDown(VK_ESCAPE))
-	{
-		Game::Get().ToggleMenu();
-	}
-
 	if (Game::Get().GetKeyDown(VK_UP))
 	{
 		currentIndex = (currentIndex - 1 + length) % length;
@@ -34,13 +29,16 @@ void MenuLevel::Update(float deltaTime)
 
 	if (Game::Get().GetKeyDown(VK_RETURN))
 	{
-		menuItems[currentIndex]->onSelected();
+		mainItems[currentIndex]->onSelected();
 	}
 }
 
-void MenuLevel::Draw()
+void MainLevel::Draw()
 {
 	Super::Draw();
+
+	// 커서 감추기.
+	Engine::Get().SetCursorType(CursorType::NoCursor);
 
 	Engine::Get().SetCursorPosition(Engine::Get().ScreenSize().x + 20, (Engine::Get().ScreenSize().y / 2) + 2);
 	//Engine::Get().SetCursorPosition(0, 0);
@@ -52,7 +50,7 @@ void MenuLevel::Draw()
 	for (int ix = 0; ix < length; ++ix)
 	{
 		SetColor(ix == currentIndex ? selectedColor : unselectedColor);
-		Log("%s", menuItems[ix]->menuText);
-		Engine::Get().SetCursorPosition(Engine::Get().ScreenSize().x + 19, (Engine::Get().ScreenSize().y / 2) + 5);
+		Log("%s", mainItems[ix]->mainText);
+		Engine::Get().SetCursorPosition(Engine::Get().ScreenSize().x + 20, (Engine::Get().ScreenSize().y / 2) + 5);
 	}
 }

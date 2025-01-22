@@ -49,7 +49,7 @@ void GameLevel::Update(float deltaTime)
 		timer.Reset();
 
 		// 커서 이동
-		Engine::Get().SetCursorPosition(Engine::Get().ScreenSize().x / 2, Engine::Get().ScreenSize().y);
+		Engine::Get().SetCursorPosition(Engine::Get().ScreenSize().x + 20, (Engine::Get().ScreenSize().y / 2) - 2);
 
 		// 메시지 출력
 		Log("Stage Clear!");
@@ -82,7 +82,7 @@ void GameLevel::Update(float deltaTime)
 		}
 
 		// 커서 이동
-		Engine::Get().SetCursorPosition(Engine::Get().ScreenSize().x / 2, Engine::Get().ScreenSize().y);
+		Engine::Get().SetCursorPosition(Engine::Get().ScreenSize().x + 20, (Engine::Get().ScreenSize().y / 2) - 2);
 
 		// 메시지 출력
 		Log("Game Clear!");
@@ -106,7 +106,7 @@ void GameLevel::Update(float deltaTime)
 		}
 
 		// 커서 이동
-		Engine::Get().SetCursorPosition(Engine::Get().ScreenSize().x / 2, Engine::Get().ScreenSize().y);
+		Engine::Get().SetCursorPosition(Engine::Get().ScreenSize().x + 20, (Engine::Get().ScreenSize().y / 2) - 2);
 
 		// 메시지 출력
 		Log("Game Over!");
