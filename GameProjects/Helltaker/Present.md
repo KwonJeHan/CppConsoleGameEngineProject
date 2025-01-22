@@ -14,12 +14,16 @@
 
 
 
+
+
 **게임 장르 : 턴제 퍼즐 어드벤처**
 
 * **핵심 게임 플레이 특징**
   * 제한된 이동 횟수 내에서 퍼즐 해결
   * 상자 밀기, 스켈레톤 처치, 열쇠/문 시스템
   * 최종 목표인 악마에게 도달하기
+
+
 
 
 
@@ -31,6 +35,8 @@
 
 
 
+
+
 ### 1-3. 개발 환경
 
 * 사용 언어 : C++
@@ -39,6 +45,8 @@
   * 콘솔 기반 텍스트 그래픽
   * 키보드 입력 지원
   * Windows 콘솔 환경
+
+
 
 
 
@@ -62,6 +70,8 @@
 
 
 
+
+
 ### 2-2 기술적 구현
 
 * 그래픽 처리
@@ -78,6 +88,8 @@
 
 
 
+
+
 ## 3. 개발 과정
 
 #### **이동 횟수 추가 및 게임 오버 추가**
@@ -88,9 +100,13 @@ moveCount 변수 선언 및 키보드 입력을 받으면 값을 1 씩 증가
 
 
 
+
+
 <img src= "https://github.com/KwonJeHan/CppConsoleGameEngineProject/blob/main/GameProjects/images/Present/2.Gameover.PNG">
 
 moveLimit 값보다 moveCount 값이 더 커지면 true 반환
+
+
 
 
 
@@ -102,11 +118,15 @@ moveLimit 값보다 moveCount 값이 더 커지면 true 반환
 
 
 
+
+
 #### **신규 액터 추가 (스켈레톤, 가시 함정, 열쇠, 문, 악마)**
 
 <img src= "https://github.com/KwonJeHan/CppConsoleGameEngineProject/blob/main/GameProjects/images/Present/4-1.skeleton.PNG">
 
 기존 액터들과 같은 형식으로 추가
+
+
 
 
 
@@ -116,9 +136,13 @@ moveLimit 값보다 moveCount 값이 더 커지면 true 반환
 
 
 
+
+
 <img src= "https://github.com/KwonJeHan/CppConsoleGameEngineProject/blob/main/GameProjects/images/Present/4-8.sDraw.PNG">
 
 스켈레톤, 열쇠, 문은 바위와 같이 땅 위에 덮어쓰는 형태로 생성
+
+
 
 
 
@@ -128,9 +152,13 @@ moveLimit 값보다 moveCount 값이 더 커지면 true 반환
 
 
 
+
+
 <img src= "https://github.com/KwonJeHan/CppConsoleGameEngineProject/blob/main/GameProjects/images/Present/4-10.gDestroy.PNG">
 
 문은 열쇠가 있으면 열쇠 개수를 하나 줄이고 사라짐, 없으면 이동 불가
+
+
 
 
 
@@ -140,9 +168,13 @@ moveLimit 값보다 moveCount 값이 더 커지면 true 반환
 
 
 
+
+
 <img src= "https://github.com/KwonJeHan/CppConsoleGameEngineProject/blob/main/GameProjects/images/Present/4-12.spikePosition.PNG">
 
 가시 함정은 충돌 시 moveCount 값 1 더 증가
+
+
 
 
 
@@ -154,11 +186,15 @@ moveLimit 값보다 moveCount 값이 더 커지면 true 반환
 
 
 
+
+
 #### **스테이지 클리어 및 전환 추가**
 
 <img src= "https://github.com/KwonJeHan/CppConsoleGameEngineProject/blob/main/GameProjects/images/Present/6-1.stageClear.PNG">
 
 마지막 스테이지 (현 프로젝트에선 4번째 스테이지)를 클리어 시 lastStage 값이 True로 변경되므로 조건문을 위와 같이 작성
+
+
 
 
 
@@ -168,9 +204,13 @@ moveLimit 값보다 moveCount 값이 더 커지면 true 반환
 
 
 
+
+
 <img src= "https://github.com/KwonJeHan/CppConsoleGameEngineProject/blob/main/GameProjects/images/Present/6-4.gameStage.PNG">
 
 GameLevel을 만들 때 SelectStage 함수를 호출
+
+
 
 
 
@@ -180,9 +220,13 @@ Game 클래스의 NextLevel 함수를 만들고 새로운 레벨 만들기 및 �
 
  
 
+
+
 <img src= "https://github.com/KwonJeHan/CppConsoleGameEngineProject/blob/main/GameProjects/images/Present/6-5.stageClear.PNG">
 
 스테이지 클리어 시 NextLevel 함수 호출
+
+
 
 
 
@@ -194,11 +238,15 @@ Game 클래스의 NextLevel 함수를 만들고 새로운 레벨 만들기 및 �
 
 
 
+
+
 #### **메인 메뉴 추가**
 
 <img src= "https://github.com/KwonJeHan/CppConsoleGameEngineProject/blob/main/GameProjects/images/Present/8.mainMenu.PNG">
 
 Mainmenu 클래스 및 함수 추가
+
+
 
 
 
@@ -208,47 +256,63 @@ Main.cpp 실행 시 new MainLevel을 만들어서 LoadLevel로 호출
 
 
 
-## 4. 시연
 
-<img src= "https://github.com/KwonJeHan/CppConsoleGameEngineProject/blob/main/GameProjects/images/Present/Mainmenu.gif">
+
+## 4. 시연
 
 **메인 메뉴**
 
+<img src= "https://github.com/KwonJeHan/CppConsoleGameEngineProject/blob/main/GameProjects/images/Present/Mainmenu.gif">
 
 
-<img src= "https://github.com/KwonJeHan/CppConsoleGameEngineProject/blob/main/GameProjects/images/Present/Stone.gif">
+
+
 
 **바위 충돌**
 
+<img src= "https://github.com/KwonJeHan/CppConsoleGameEngineProject/blob/main/GameProjects/images/Present/Stone.gif">
 
 
-<img src= "https://github.com/KwonJeHan/CppConsoleGameEngineProject/blob/main/GameProjects/images/Present/Gate.gif">
+
+
 
 **문 충돌**
 
+<img src= "https://github.com/KwonJeHan/CppConsoleGameEngineProject/blob/main/GameProjects/images/Present/Gate.gif">
 
 
-<img src= "https://github.com/KwonJeHan/CppConsoleGameEngineProject/blob/main/GameProjects/images/Present/SpikeKey.gif">
+
+
 
 **가시 함정, 열쇠 2개 획득**
 
+<img src= "https://github.com/KwonJeHan/CppConsoleGameEngineProject/blob/main/GameProjects/images/Present/SpikeKey.gif">
 
 
-<img src= "https://github.com/KwonJeHan/CppConsoleGameEngineProject/blob/main/GameProjects/images/Present/SelectStage.gif">
+
+
 
 **스테이지 전환**
 
- 
+<img src= "https://github.com/KwonJeHan/CppConsoleGameEngineProject/blob/main/GameProjects/images/Present/SelectStage.gif">
+
+
+
+
+
+ **1스테이지 클리어**
 
 <img src= "https://github.com/KwonJeHan/CppConsoleGameEngineProject/blob/main/GameProjects/images/Present/1stageClear.gif">
 
-**1스테이지 클리어**
 
 
+
+
+**게임 클리어**
 
 <img src= "https://github.com/KwonJeHan/CppConsoleGameEngineProject/blob/main/GameProjects/images/Present/GameClear.gif">
 
-**게임 클리어**
+
 
 
 
