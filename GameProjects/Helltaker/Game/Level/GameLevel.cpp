@@ -485,13 +485,13 @@ bool GameLevel::CanPlayerMove(const Vector2& position)
 				// 땅이나 타겟, 가시 함정이면 이동 가능
 				if (actor->As<Ground>() || actor->As<Target>() || actor->As<Spike>())
 				{
-					// 박스 이동 처리
+					// 바위 이동 처리
 					searchedStone->SetPosition(newPosition);
 
 					// 게임 클리어 여부 확인
 					//isGameClear = CheckGameClear();
 
-					// 박스나 해골은 이동, 캐릭터는 제자리
+					// 바위나 해골은 이동, 캐릭터는 제자리
 					return false;
 				}
 			}
@@ -606,7 +606,7 @@ bool GameLevel::CanPlayerMove(const Vector2& position)
 					// 게임 클리어 여부 확인
 					//isGameClear = CheckGameClear();
 
-					// 박스나 해골은 이동, 캐릭터는 제자리
+					// 바위나 해골은 이동, 캐릭터는 제자리
 					return false;
 				}
 			}

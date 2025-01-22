@@ -1,7 +1,7 @@
 #include "Spike.h"
 
 Spike::Spike(const Vector2& position)
-	: DrawableActor("▦")//▦
+	: DrawableActor("!")//▦
 {
 	// 위치 설정
 	this->position = position;

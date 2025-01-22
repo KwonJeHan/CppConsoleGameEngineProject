@@ -55,11 +55,11 @@ private:
     // 박스 액터
     List<Stone*> stones;
 
-    // 해골 액터
-    List<Skeleton*> skeletons;
-
     // 타겟 액터
     List<Target*> targets;
+
+    // 해골 액터
+    List<Skeleton*> skeletons;
 
     // 가시 함정 액터
     List<Spike*> spikes;

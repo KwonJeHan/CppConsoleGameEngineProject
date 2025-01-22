@@ -1,7 +1,7 @@
 #include "Demon.h"
 
 Demon::Demon(const Vector2& position)
-	: DrawableActor("♥")
+	: DrawableActor("D")
 {
 	// 위치 설정
 	this->position = position;
