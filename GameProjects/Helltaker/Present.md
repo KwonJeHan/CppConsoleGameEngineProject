@@ -234,13 +234,13 @@ Main.cpp 실행 시 new MainLevel을 만들어서 LoadLevel로 호출
 
 
 
-<img src= "https://github.com/KwonJeHan/CppConsoleGameEngineProject/blob/main/GameProjects/images/Present/1stageClear.gif">
+<img src= "https://github.com/KwonJeHan/CppConsoleGameEngineProject/blob/main/GameProjects/images/Present/SelectStage.gif">
 
 **스테이지 전환**
 
  
 
-<img src= "https://github.com/KwonJeHan/CppConsoleGameEngineProject/blob/main/GameProjects/images/Present/Mainmenu.gif">
+<img src= "https://github.com/KwonJeHan/CppConsoleGameEngineProject/blob/main/GameProjects/images/Present/1stageClear.gif">
 
 **1스테이지 클리어**
 
