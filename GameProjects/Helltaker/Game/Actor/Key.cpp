@@ -1,7 +1,7 @@
 #include "Key.h"
 
 Key::Key(const Vector2& position)
-	: DrawableActor("K")//§
+	: DrawableActor("§")//§
 {
 	// 위치 설정
 	this->position = position;

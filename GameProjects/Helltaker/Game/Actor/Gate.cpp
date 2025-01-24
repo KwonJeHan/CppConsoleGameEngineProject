@@ -1,7 +1,7 @@
 #include "Gate.h"
 
 Gate::Gate(const Vector2& position)
-	: DrawableActor("G")//□
+	: DrawableActor("□")//□
 {
 	// 위치 설정
 	this->position = position;

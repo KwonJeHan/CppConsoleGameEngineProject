@@ -94,7 +94,7 @@ void GameLevel::Update(float deltaTime)
 		Engine::Get().QuitGame();
 	}
 
-	// 게임 오버 됐으면 게임 종료 처리
+	// 게임 오버 됐으면 게임 재시작
 	if (isGameOver)
 	{
 		// 타이머
@@ -104,6 +104,7 @@ void GameLevel::Update(float deltaTime)
 		{
 			return;
 		}
+		timer.Reset();
 
 		// 커서 이동
 		Engine::Get().SetCursorPosition(Engine::Get().ScreenSize().x + 20, (Engine::Get().ScreenSize().y / 2) - 2);
@@ -114,8 +115,13 @@ void GameLevel::Update(float deltaTime)
 		// 쓰레드 정지
 		Sleep(2000);
 
-		// 게임 종료 처리
-		Engine::Get().QuitGame();
+		system("cls");
+
+		// 스테이지 다시 시작
+		Game::Get().ReLevel();
+
+		//// 게임 종료 처리
+		//Engine::Get().QuitGame();
 	}
 }
 
@@ -889,31 +895,6 @@ void GameLevel::TextFileRead(const char* filename)
 	// 파일 닫기
 	fclose(file);
 }
-
-//bool GameLevel::CheckGameClear()
-//{
-//	// 점수 확인을 위한 변수
-//	int currentScore = 0;
-//	int targetScore = targets.Size();
-//
-//	// 타겟 위치에 배치된 박스 개수 세기
-//	for (auto* stone : stones)
-//	{
-//		for (auto* target : targets)
-//		{
-//			// 점수 확인
-//			if (stone->Position() == target->Position())
-//			{
-//				++currentScore;
-//				continue;
-//			}
-//		}
-//	}
-//
-//	// 흭득한 점수가 목표 점수와 같은지 비교
-//	return currentScore == targetScore;
-//}
-
 
 bool GameLevel::CheckStageClear()
 {

@@ -3,7 +3,7 @@
 
 MainLevel::MainLevel()
 {
-	mainItems.PushBack(new MainItem("Start  Game", []() { system("cls"); Game::Get().NextLevel(); }));
+	mainItems.PushBack(new MainItem("Start  Game", []() { system("cls"); Game::Get().ReLevel(); }));
 	mainItems.PushBack(new MainItem("Quit Game", []() { Game::Get().QuitGame(); }));
 	length = mainItems.Size();
 }

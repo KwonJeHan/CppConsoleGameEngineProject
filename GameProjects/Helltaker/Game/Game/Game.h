@@ -15,6 +15,8 @@ public:
 
 	void NextLevel();
 
+	void ReLevel();
+
 	int index = 0;
 
 private:
