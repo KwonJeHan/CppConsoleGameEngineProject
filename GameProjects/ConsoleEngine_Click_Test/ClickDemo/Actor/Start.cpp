@@ -4,8 +4,9 @@
 Start::Start(const Vector2& position)
 	: DrawableActor("s")
 {
-	color = Color::Red;
+	// 위치 설정
 	this->position = position;
+	color = Color::Red;
 }
 
 void Start::Update(float deltaTime)
@@ -16,4 +17,5 @@ void Start::Update(float deltaTime)
 	{
 		position = Engine::Get().MousePosition();
 	}
+
 }

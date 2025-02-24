@@ -5,7 +5,6 @@
 class Node
 {
 	friend class AStar;
-	friend class DemoLevel;
 
 public:
 	Node(const Vector2& position = Vector2(), Node* parent = nullptr)

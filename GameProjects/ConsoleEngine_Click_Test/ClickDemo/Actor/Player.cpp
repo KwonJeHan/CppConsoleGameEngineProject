@@ -4,8 +4,8 @@
 Player::Player(const Vector2& position)
 	: DrawableActor("e")
 {
-	this->position = position;
 	color = Color::Green;
+	this->position = position;
 }
 
 void Player::Update(float deltaTime)
@@ -20,10 +20,5 @@ void Player::Update(float deltaTime)
 	if (Engine::Get().GetKeyDown(VK_RBUTTON))
 	{
 		position = Engine::Get().MousePosition();
-	}
-
-	if (Engine::Get().GetKeyDown(VK_RETURN))
-	{
-		position.y -= 1;
 	}
 }

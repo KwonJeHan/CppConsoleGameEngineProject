@@ -3,6 +3,9 @@
 
 int main()
 {
+	// 메모리 누수 확인
+	CheckMemoryLeak();
+
 	Engine engine;
 	engine.LoadLevel(new DemoLevel());
 	engine.Run();
