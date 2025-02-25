@@ -5,7 +5,7 @@
 class Node
 {
 	friend class AStar;
-
+	friend class DemoLevel;
 public:
 	Node(const Vector2& position = Vector2(), Node* parent = nullptr)
 		: position(position), parent(parent)
@@ -24,10 +24,7 @@ public:
 		return position == other.position;
 	}
 
-	Vector2 Position() const
-	{
-		return position;
-	}
+	Vector2 GetPosition() const { return position; }
 
 private:
 	Vector2 position;

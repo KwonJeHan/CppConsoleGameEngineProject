@@ -2,6 +2,9 @@
 
 #include "Level/Level.h"
 
+
+class Start;
+class Player;
 class DemoLevel : public Level
 {
 	// RTTI Á¤ÀÇ.
@@ -9,4 +12,11 @@ class DemoLevel : public Level
 
 public:
 	DemoLevel();
+
+	
+
+private:
+	std::vector<std::vector<int>> grid;
+	Start* start;
+	Player* player;
 };

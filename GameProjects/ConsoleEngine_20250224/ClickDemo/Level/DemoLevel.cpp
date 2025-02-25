@@ -22,25 +22,33 @@ DemoLevel::DemoLevel()
 		{ 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1 },
 		{ 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1 },
 		{ 1, 0, 0, 0, 1, 1, 1, 0, 0, 1, 1, 1, 0, 0, 1, 1 },
-		{ 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1 },
 		{ 1, 2, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1 },
+		{ 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1 },
 		{ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 },
 	};
 
-	Start* start = new Start();
+	start = new Start();
 	AddActor(start);
 	//AddActor(new Start());
-	Node* startNode = nullptr;
-	
-	Player* player = new Player();
+
+	player = new Player();
 	AddActor(player);
 	//AddActor(new Player());
+
+	// 시작 위치와 목표 위치 찾기.
+	Node* startNode = nullptr;
 	Node* goalNode = nullptr;
 
-	if (Engine::Get().GetKeyDown(VK_RETURN))
+	bool hasInitialized = false;
+	for (int x = 0; x < grid[0].size(); ++x)
 	{
-		bool hasInitialized = false;
-		for (int x = 0; x < grid[0].size(); ++x)
+		if (startNode != nullptr && goalNode != nullptr)
+		{
+			hasInitialized = true;
+			break;
+		}
+
+		for (int y = 0; y < grid.size(); ++y)
 		{
 			if (startNode != nullptr && goalNode != nullptr)
 			{
@@ -48,64 +56,57 @@ DemoLevel::DemoLevel()
 				break;
 			}
 
-			for (int y = 0; y < grid.size(); ++y)
+			if (grid[y][x] == 2)
 			{
-				if (startNode != nullptr && goalNode != nullptr)
-				{
-					hasInitialized = true;
-					break;
-				}
-
-				if (grid[y][x] == 2)
-				{
-					startNode = new Node((x, y));
-					grid[y][x] = 0;
-					continue;
-				}
-
-				if (grid[y][x] == 3)
-				{
-					goalNode = new Node((x, y));
-					grid[y][x] = 0;
-					continue;
-				}
+				startNode = new Node(start->GetPosition());
+				grid[y][x] = 0;
+				continue;
 			}
 
-			if (hasInitialized)
+			if (grid[y][x] == 3)
 			{
-				break;
+				goalNode = new Node(player->GetPosition());
+				grid[y][x] = 0;
+				continue;
 			}
 		}
 
-		// 객체 생성.
-		AStar aStar;
-
-		// 경로 탐색.
-		std::vector<Node*> path = aStar.FindPath(startNode, goalNode, grid);
-
-		// 경로 탐색에 성공한 경우 관련 정보 출력.
-		if (!path.empty())
+		if (hasInitialized)
 		{
-			std::cout << "경로를 찾았습니다. 최단 경로:\n";
-			for (Node* node : path)
-			{
-				std::cout << "(" << node->position.x << ", " << node->position.y << ") -> ";
-			}
-			std::cout << "목표 도착\n";
-
-			// 경로 탐색 결과 2차원 맵 출력.
-			std::cout << "경로를 맵에 표시한 결과:\n";
-			aStar.DisplayGridWithPath(grid, path);
+			break;
 		}
+	}
 
-		// 경로 탐색에 실패.
-		else
+	// 객체 생성.
+	AStar aStar;
+
+	// 경로 탐색.
+	std::vector<Node*> path = aStar.FindPath(startNode, goalNode, grid);
+
+	// 경로 탐색에 성공한 경우 관련 정보 출력.
+	if (!path.empty())
+	{
+		std::cout << "경로를 찾았습니다. 최단 경로:\n";
+		for (Node* node : path)
 		{
-			std::cout << "경로를 찾지 못했습니다.\n";
+			std::cout << "(" << node->Position().x << ", " << node->Position().y << ") -> ";
 		}
+		std::cout << "목표 도착\n";
+
+		// 경로 탐색 결과 2차원 맵 출력.
+		std::cout << "경로를 맵에 표시한 결과:\n";
+		aStar.DisplayGridWithPath(grid, path);
+	}
+
+	// 경로 탐색에 실패.
+	else
+	{
+		std::cout << "경로를 찾지 못했습니다.\n";
 	}
 
 	// 메모리 해제.
 	SafeDelete(goalNode);
+	
 }
+
 
