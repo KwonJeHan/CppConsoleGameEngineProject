@@ -47,6 +47,7 @@ private:
 	bool IsDestination(Node* node);
 
 private:
+
 	// 열린 리스트.
 	std::vector<Node*> openList;
 

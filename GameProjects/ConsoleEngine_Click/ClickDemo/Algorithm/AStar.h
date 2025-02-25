@@ -6,6 +6,7 @@
 class Node;
 class AStar
 {
+private:
 	// 이동 방향 구조체
 	struct Direction
 	{
@@ -27,12 +28,10 @@ public:
 	// 그리드 출력 함수
 	void DisplayGridWithPath(std::vector<std::vector<int>>& grid, const std::vector<Node*>& path);
 
-
 private:
-
 	// 탐색을 완료한 후에 최적 경로를 반환하는 함수
 	// 목표 노드로부터 부모 노드를 역추적해 구함
-	std::vector<Node*> ConstreuctPath(Node* goalNode);
+	std::vector<Node*> ConstructPath(Node* goalNode);
 
 	// hCost 계산 함수
 	float CalculateHeuristic(Node* currentNode, Node* goalNode);
@@ -44,7 +43,7 @@ private:
 	bool HasVisited(int x, int y, float gCost);
 
 	// 탐색하려는 위치가 목표 위치인지 확인하는 함수
-	bool IsDestination(const Node* node);
+	bool IsDestination(Node* node);
 
 	// 애니메이션
 	void DisplayGrid(std::vector<std::vector<int>>& grid);

@@ -67,7 +67,7 @@ std::vector<Node*> AStar::FindPath(Node* startNode, Node* goalNode, std::vector<
         if (IsDestination(currentNode))
         {
             // 목표 지점으로부터 역추적해서 경로를 생성 후 반환
-            return ConstreuctPath(currentNode);
+            return ConstructPath(currentNode);
         }
 
         // 방문 처리를 위해 현재 노드를 열린 리스트에서 제거
@@ -236,7 +236,7 @@ void AStar::DisplayGridWithPath(
     }
 }
 
-std::vector<Node*> AStar::ConstreuctPath(Node* goalNode)
+std::vector<Node*> AStar::ConstructPath(Node* goalNode)
 {
     // 목표 노드로부터 부모 노드를 따라 역추적하면서 경로 설정
     std::vector<Node*> path;
@@ -312,7 +312,7 @@ bool AStar::HasVisited(int x, int y, float gCost)
     return false;
 }
 
-bool AStar::IsDestination(const Node* node)
+bool AStar::IsDestination(Node* node)
 {
     return *node == *goalNode;
 }

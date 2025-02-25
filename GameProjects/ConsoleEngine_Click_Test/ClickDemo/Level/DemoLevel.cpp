@@ -23,6 +23,28 @@ void DemoLevel::Update(float deltaTime)
 
 void DemoLevel::Draw()
 {
+	Engine::Get().Draw(Vector2(0, 0), "Demo Level", Color::White);
+
+	// 맵 그리기
+	for (auto* actor : map)
+	{
+		// start 위치 확인
+		if (actor->Position() == start->Position())
+		{
+			continue;
+		}
+
+		// player 위치 확인
+		if (actor->Position() == player->Position())
+		{
+			continue;
+		}
+
+		actor->Draw();
+	}
+
+	start->Draw();
+	player->Draw();
 }
 
 void DemoLevel::TextFileRead(const char* filename)
@@ -67,8 +89,8 @@ void DemoLevel::TextFileRead(const char* filename)
 	// 파일 읽을 때 사용할 인덱스
 	int index = 0;
 	// 좌표 계산을 위한 변수 선언
-	int xPosition = (int)(Engine::Get().ScreenSize().x + 17);
-	int yPosition = (int)(Engine::Get().ScreenSize().y / 2);
+	int xPosition = (int)(Engine::Get().ScreenSize().x);
+	int yPosition = (int)(Engine::Get().ScreenSize().y);
 
 
 	// 해석 (파싱-Parcing)
@@ -81,7 +103,7 @@ void DemoLevel::TextFileRead(const char* filename)
 		if (mapChar == '\n')
 		{
 			++yPosition;
-			xPosition = (Engine::Get().ScreenSize().x + 17);
+			xPosition = (Engine::Get().ScreenSize().x);
 			continue;
 		}
 
@@ -94,10 +116,8 @@ void DemoLevel::TextFileRead(const char* filename)
 		// 맵 문자가 1이면 Wall 액터 생성
 		if (mapChar == '1')
 		{
-			//std::cout << 'A';
-			//AddActor(new Wall(Vector2(xPosition, yPosition)));
 			Wall* wall = new Wall(Vector2(xPosition, yPosition));
-			actors.emplace_back(wall);
+			AddActor(wall);
 			map.emplace_back(wall);
 		}
 
@@ -105,30 +125,30 @@ void DemoLevel::TextFileRead(const char* filename)
 		else if (mapChar == '0')
 		{
 			Ground* ground = new Ground(Vector2(xPosition, yPosition));
-			actors.emplace_back(ground);
+			AddActor(ground);
 			map.emplace_back(ground);
 		}
 
-		// 맵 문자가 p이면 플레이어 액터 생성
+		// 맵 문자가 3이면 플레이어 액터 생성
 		else if (mapChar == '3')
 		{
 			Ground* ground = new Ground(Vector2(xPosition, yPosition));
-			actors.emplace_back(ground);
-			map.emplace_back(ground);
-
-			start = new Start(Vector2(xPosition, yPosition));
-			actors.emplace_back(player);
-		}
-
-		// 맵 문자가 p이면 플레이어 액터 생성
-		else if (mapChar == '2')
-		{
-			Ground* ground = new Ground(Vector2(xPosition, yPosition));
-			actors.emplace_back(ground);
+			AddActor(ground);
 			map.emplace_back(ground);
 
 			player = new Player(Vector2(xPosition, yPosition));
-			actors.emplace_back(player);
+			AddActor(player);
+		}
+
+		// 맵 문자가 p이면 Start 액터 생성
+		else if (mapChar == '2')
+		{
+			Ground* ground = new Ground(Vector2(xPosition, yPosition));
+			AddActor(ground);
+			map.emplace_back(ground);
+
+			start = new Start(Vector2(xPosition, yPosition));
+			AddActor(start);
 		}
 
 		++xPosition;

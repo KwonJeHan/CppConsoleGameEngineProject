@@ -1,11 +1,16 @@
 #include "Player.h"
 #include "Engine/Engine.h"
 
-Player::Player(const Vector2& position)
+Player::Player()
 	: DrawableActor("e")
 {
-	this->position = position;
 	color = Color::Green;
+	position = Vector2(5, 5);
+}
+
+Vector2 Player::GetPosition() const
+{
+	return position;
 }
 
 void Player::Update(float deltaTime)
@@ -20,5 +25,5 @@ void Player::Update(float deltaTime)
 	if (Engine::Get().GetKeyDown(VK_RBUTTON))
 	{
 		position = Engine::Get().MousePosition();
-	}	
+	}
 }

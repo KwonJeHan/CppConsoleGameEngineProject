@@ -74,7 +74,14 @@ DemoLevel::DemoLevel()
     // 콘솔 커서 이동 (기존 맵 출력에 방해되지 않도록).
     COORD position{ 0, 30 };
     SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), position);
-    std::cin.get();
+}
+
+void DemoLevel::Update(float deltaTime)
+{
+}
+
+void DemoLevel::Draw()
+{   
 }
 
 void DemoLevel::FindStartAndGoalNode(std::vector<std::vector<int>>& grid, Node** outStartNode, Node** outGoalNode)
@@ -98,14 +105,14 @@ void DemoLevel::FindStartAndGoalNode(std::vector<std::vector<int>>& grid, Node**
 
             if (grid[y][x] == 2)
             {
-                AddActor(new Start(Vector2(x, y)));
+                //AddActor(new Start(Vector2(x, y)));
                 *outStartNode = new Node(Vector2(x, y));
                 continue;
             }
 
             if (grid[y][x] == 3)
             {
-                AddActor(new Player(Vector2(x, y)));
+                //AddActor(new Player(Vector2(x, y)));
                 *outGoalNode = new Node(Vector2(x, y));
                 continue;
             }
