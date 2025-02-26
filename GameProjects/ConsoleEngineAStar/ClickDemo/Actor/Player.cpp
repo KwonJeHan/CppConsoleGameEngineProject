@@ -17,7 +17,7 @@ void Player::SetPath(const std::vector<Node*>& path)
 
 void Player::Update(float deltaTime)
 {
-    Super::Update(deltaTime);
+    DrawableActor::Update(deltaTime);
 
     if (Engine::Get().GetKeyDown(VK_RBUTTON))
     {

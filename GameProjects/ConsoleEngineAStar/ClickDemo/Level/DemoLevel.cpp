@@ -6,12 +6,14 @@
 #include "Engine/Engine.h"
 #include <iostream>
 
+#include "Game/Game.h"
+
+
 DemoLevel::DemoLevel()
-    : start(nullptr), player(nullptr), astar(new AStar()), grid(10, std::vector<int>(10, 0)), startNode(nullptr)
+    : start(nullptr), player(nullptr), astar(new AStar()), grid(50, std::vector<int>(50, 0))
 {
     start = new Start();
     player = new Player();
-    startNode = new Node(start->Position());
 
     AddActor(start);
     AddActor(player);
@@ -19,8 +21,8 @@ DemoLevel::DemoLevel()
 
 DemoLevel::~DemoLevel()
 {
-    //delete astar;
-    //delete startNode;
+	// 메모리 릭 방지
+    SafeDelete(astar);
 }
 
 void DemoLevel::Update(float deltaTime)
@@ -36,32 +38,61 @@ void DemoLevel::Update(float deltaTime)
     {
         FindAndMovePath();
     }
+
+	/*if (Engine::Get().GetKeyDown(VK_SPACE))
+	{
+		currentPath.clear();
+		for (auto& row : grid)
+		{
+			for (int& cell : row)
+			{
+				cell = 0;
+			}
+		}
+	}*/
+}
+
+void DemoLevel::Draw()
+{
+    start->Draw();
+    player->Draw();
+
+    //player->SetPath(currentPath);
+    MarkPath();
+    //PrintGrid();
 }
 
 void DemoLevel::FindAndMovePath()
 {
-    startNode->position = start->Position(); // 최신 위치 반영
+    Vector2 startPos = start->Position();
     Vector2 goalPos = player->Position();
 
-    if (!IsValidPosition(startNode->position) || !IsValidPosition(goalPos))
+    if (!IsValidPosition(startPos) || !IsValidPosition(goalPos))
     {
-        std::cout << "올바르지 않은 start/goal 위치입니다.";
+        std::cout << "Grid를 벗어난 start/goal 위치입니다.\n";
         return;
     }
 
-    Node goalNode(goalPos);
 
-    currentPath = astar->FindPath(startNode, &goalNode, grid);
+    Node* startNode = new Node(startPos);
+    Node* goalNode = new Node(goalPos);
+    
+
+    currentPath = astar->FindPath(startNode, goalNode, grid);
 
     if (currentPath.empty())
     {
-        std::cout << "유효한 path가 없습니다.";
+        std::cout << "유효한 path가 없습니다.\n";
         return;
     }
 
     player->SetPath(currentPath);
-    MarkPath();
-    PrintGrid();
+    //MarkPath();
+    //PrintGrid();
+    
+
+	// 메모리 릭 방지
+	SafeDelete(goalNode);
 }
 
 void DemoLevel::MarkPath()
@@ -72,7 +103,7 @@ void DemoLevel::MarkPath()
         if (IsValidPosition(pos))
         {
             grid[pos.y][pos.x] = 2;
-            Engine::Get().Draw(pos, "*");
+            Engine::Get().Draw(pos, "*", Color::Green);
         }
     }
 }
@@ -84,12 +115,17 @@ void DemoLevel::PrintGrid()
         for (int cell : row)
         {
             if (cell == 2)
-                std::cout << "* ";
+            {
+                std::cout << "* ";   
+            }
             else
+            {
                 std::cout << "0 ";
+            }
         }
-        std::cout << std::endl;
+        std::cout << "\n";
     }
+	std::cout << "\n";
 }
 
 bool DemoLevel::IsValidPosition(const Vector2& pos) const

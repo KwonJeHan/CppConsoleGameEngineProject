@@ -15,6 +15,8 @@ public:
 
     virtual void Update(float deltaTime) override;
 
+    virtual void Draw() override;
+
 private:
     void FindAndMovePath();
     void MarkPath();
@@ -27,5 +29,4 @@ private:
     Player* player;
     std::vector<Node*> currentPath;
     std::vector<std::vector<int>> grid;
-    Node* startNode;
 };
