@@ -14,9 +14,12 @@ public:
     virtual void Update(float deltaTime) override;
     void SetPath(const std::vector<Node*>& path);
 
+    virtual void Draw() override;
+
 private:
     std::vector<Node*> path;
     int pathIndex = 0;
     float moveTimer = 0.0f;
-    const float moveDelay = 0.2f; // 이동 속도 조절
+    // 이동 속도 조절
+    const float moveDelay = 0.2f;
 };

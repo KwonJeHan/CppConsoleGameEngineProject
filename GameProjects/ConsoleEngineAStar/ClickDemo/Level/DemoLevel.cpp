@@ -6,8 +6,6 @@
 #include "Engine/Engine.h"
 #include <iostream>
 
-#include "Game/Game.h"
-
 
 DemoLevel::DemoLevel()
     : start(nullptr), player(nullptr), astar(new AStar()), grid(50, std::vector<int>(50, 0))
@@ -58,7 +56,7 @@ void DemoLevel::Draw()
     player->Draw();
 
     //player->SetPath(currentPath);
-    MarkPath();
+    //MarkPath();
     //PrintGrid();
 }
 
@@ -90,43 +88,42 @@ void DemoLevel::FindAndMovePath()
     //MarkPath();
     //PrintGrid();
     
-
 	// 메모리 릭 방지
 	SafeDelete(goalNode);
 }
 
-void DemoLevel::MarkPath()
-{
-    for (Node* node : currentPath)
-    {
-        Vector2 pos = node->GetPosition();
-        if (IsValidPosition(pos))
-        {
-            grid[pos.y][pos.x] = 2;
-            Engine::Get().Draw(pos, "*", Color::Green);
-        }
-    }
-}
+//void DemoLevel::MarkPath()
+//{
+//    for (Node* node : currentPath)
+//    {
+//        Vector2 pos = node->GetPosition();
+//        if (IsValidPosition(pos))
+//        {
+//            grid[pos.y][pos.x] = 2;
+//            Engine::Get().Draw(pos, "*", Color::Green);
+//        }
+//    }
+//}
 
-void DemoLevel::PrintGrid()
-{
-    for (const auto& row : grid)
-    {
-        for (int cell : row)
-        {
-            if (cell == 2)
-            {
-                std::cout << "* ";   
-            }
-            else
-            {
-                std::cout << "0 ";
-            }
-        }
-        std::cout << "\n";
-    }
-	std::cout << "\n";
-}
+//void DemoLevel::PrintGrid()
+//{
+//    for (const auto& row : grid)
+//    {
+//        for (int cell : row)
+//        {
+//            if (cell == 2)
+//            {
+//                std::cout << "* ";   
+//            }
+//            else
+//            {
+//                std::cout << "0 ";
+//            }
+//        }
+//        std::cout << "\n";
+//    }
+//	std::cout << "\n";
+//}
 
 bool DemoLevel::IsValidPosition(const Vector2& pos) const
 {

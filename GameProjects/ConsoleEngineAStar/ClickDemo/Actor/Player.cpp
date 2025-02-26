@@ -15,6 +15,15 @@ void Player::SetPath(const std::vector<Node*>& path)
     moveTimer = 0.0f;
 }
 
+void Player::Draw()
+{
+	DrawableActor::Draw();
+	for (int i = pathIndex; i < static_cast<int>(path.size()); i++)
+	{
+		Engine::Get().Draw(path[i]->GetPosition(), "*", Color::Green);
+	}
+}
+
 void Player::Update(float deltaTime)
 {
     DrawableActor::Update(deltaTime);

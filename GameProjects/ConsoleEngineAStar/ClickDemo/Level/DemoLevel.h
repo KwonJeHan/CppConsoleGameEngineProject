@@ -19,8 +19,8 @@ public:
 
 private:
     void FindAndMovePath();
-    void MarkPath();
-    void PrintGrid();
+    //void MarkPath();
+    //void PrintGrid();
 
     bool IsValidPosition(const Vector2& pos) const;
 
